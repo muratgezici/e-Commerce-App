@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/dropdown.css">
-    <link rel="stylesheet" href="./styles/products.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/dropdown.css">
+    <link rel="stylesheet" href="./css/products.css">
     <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet"  type='text/css'>
     <title>Document</title>
 </head>
 <body>
-<%@ include file = "header.jsp" %>
+<%@ include file = "../header.jsp" %>
     <div class="content">
         <div class="leftmenu">
             <h5>Categories</h1>
@@ -78,7 +78,7 @@
                 <th colspan="3">Products in "x" category</th>
                 <tr>
                     <td class="productitem">
-                      <a href="productinfo.jsp"><img src="./img/quickbuy.png" alt=""></a>
+                        <a href="./ProductViewServlet?itemid=1&utype=A"><img src="./img/quickbuy.png" alt=""></a>
                        <p>Header</p>
                        <p>Price: 12.32TL</p>
                     </td>

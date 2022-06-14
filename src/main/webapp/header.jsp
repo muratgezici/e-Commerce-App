@@ -14,7 +14,13 @@
         <div class="header">
             <div id="headerleftside">
                 <div id="logo"><a href="./MappingServlet?pageid=home"><img src="./img/quickbuy-wide.png" alt=""></a></div>
-                <div id="searchbar"><input type="search" placeholder="Search..."> <button type="submit"><i class="fa fa-search fa-xl"></i></button></div>
+                <form action="ProductViewServlet" method="post">
+                    <div id="searchbar"><input type="search" placeholder="Search...">
+                        <button type="submit" name="productfilter" value="exists"><i class="fa fa-search fa-xl"></i></button>
+                        <button type="submit" name="productfilter" value="none"><i class="fa fa-store fa-xl"></i></button>
+                    </div>
+                </form>
+
             </div>
         
             <div id="headerrightside">
