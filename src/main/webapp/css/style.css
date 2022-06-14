@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+*{
+    margin:0px;
+    padding:0px;
+    font-family: 'Cabin', sans-serif;
+    
+   
+}
+html{
+    background-color: rgb(247, 247, 247);
+}
+
+.header {
+    display:flex;
+    flex-direction: row;
+    height: 50px;
+    width:auto;
+    margin: 0px auto;
+    border: 0px solid black;
+    justify-content:space-between;
+    padding-left: 40px;
+    padding-right: 40px;
+    align-items: center;
+    text-align: center;
+    background-color:#dcfaf7;
+    box-shadow: 1px 1px 5px 2px #a5d9d4;
+    
+}
+
+.content{
+    display:flex;
+    flex-direction: row;
+    margin: 0px auto;
+    margin-top: 20px;
+    width: fit-content;
+    height: fit-content;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(247, 247, 247);
+    border-radius: 30px;
+    
+}
+#logo img{
+    width: 150px;
+    height: 50px;
+}
+#searchbar{
+    display: flex;
+    width: 500px;
+}
+button{
+    width:70px;
+    height: 30px;
+    border: 00.1px solid #dcfaf7;
+    background-color: #dcfaf7;
+    border-radius:10px;
+    color:#7ba6a2;
+    text-align: center;
+    align-items: center;
+}
+button:hover{
+    background-color: #a5d9d4;
+    color:#dcfaf7;
+}
+.header div input{
+    width:430px;
+    height: 30px;
+    border:none;
+    background-color: #a5d9d4;
+    border-radius: 20px;
+    padding:5px;
+
+}
+#headerrightside{
+    display:flex;
+    flex-direction: row;
+    height: 100px;
+    width:250px;
+    
+    justify-content:space-evenly;
+    align-items: center;
+    text-align: center;
+}
+#headerrightside div button{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 10px;
+    
+    padding-top: 15px;
+    color:#7ba6a2;
+    text-align: center;
+    align-items: center;
+}
+#headerrightside div button:hover{
+    color:#dcfaf7;
+    
+}
+#headerrightside div button:hover .fa{
+    color:#dcfaf7;
+    
+}
+#headerleftside div button:hover .fa{
+    color:#dcfaf7;
+    
+}
+#headerrightside div button p{
+
+    
+    padding-top: 5px;
+    
+    text-align: center;
+    align-items: center;
+}
+#headerleftside{
+    display:flex;
+    flex-direction: row;
+    height: 100px;
+    width: 700px;
+    
+    justify-content:space-around;
+    align-items: center;
+    text-align: center;
+}
+#headerrightside button{
+    
+    height: 40px;
+}
+.fa{
+    color:#7ba6a2;
+}
+

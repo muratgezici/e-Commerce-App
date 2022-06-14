@@ -1,0 +1,32 @@
+.content{
+    display:flex;
+    flex-direction: row;
+    border-radius: 30px;
+    margin-top:40px;
+    width: 400px;
+    height: 400px;
+}
+.content .loginform{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.content .loginform input{
+    
+    width: 250px;
+    height: 25px;
+    margin:20px;
+}
+.content .loginform div input{
+    width: 105px;
+}
+.content button{
+    width:115px;
+    margin:10px;
+    
+}
+.content h3{
+    color: #7ba6a2;
+}
