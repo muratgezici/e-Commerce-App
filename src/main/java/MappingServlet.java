@@ -20,6 +20,11 @@ public class MappingServlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login-register-profile/register-direction.jsp");
             dispatcher.forward(request,response);
         }
+       else if(pageid.equalsIgnoreCase("home")){
+           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+           dispatcher.forward(request,response);
+       }
+
 
     }
 
@@ -32,6 +37,15 @@ public class MappingServlet extends HttpServlet {
         }
         else if(flag.equalsIgnoreCase("seller")){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login-register-profile/register-seller.jsp");
+            dispatcher.forward(request,response);
+        }
+        else if(flag.equalsIgnoreCase("register")){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login-register-profile/register-direction.jsp");
+            dispatcher.forward(request,response);
+        }
+        else if(flag.equalsIgnoreCase("login")){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LoginServlet");
+
             dispatcher.forward(request,response);
         }
     }

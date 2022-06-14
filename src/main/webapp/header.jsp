@@ -13,7 +13,7 @@
     <header>
         <div class="header">
             <div id="headerleftside">
-                <div id="logo"><img src="./img/quickbuy-wide.png" alt=""></div>
+                <div id="logo"><a href="./MappingServlet?pageid=home"><img src="./img/quickbuy-wide.png" alt=""></a></div>
                 <div id="searchbar"><input type="search" placeholder="Search..."> <button type="submit"><i class="fa fa-search fa-xl"></i></button></div>
             </div>
         
@@ -24,9 +24,9 @@
                     <li class="nav-item nav-item-dropdown">
                       <a class="dropdown-trigger" href="#"><button type="submit"><i class="fa fa-user fa-xl"></i><p>My Account</p></button></a>
                       <ul class="dropdown-menu">
-                        <li class="dropdown-menu-item">
-                          <a href="./MappingServlet?pageid=login">My Profile</a>
-                        </li>
+                          <a href="./MappingServlet?pageid=login"> <li class="dropdown-menu-item">
+                          My Profile
+                        </li></a>
                       </ul>
                     </li>
                   </ul>
@@ -38,12 +38,12 @@
                       <li class="nav-item nav-item-dropdown">
                         <a class="dropdown-trigger" href="#"><button type="submit"><i class="fa fa-right-to-bracket fa-xl"></i><p>Login/Register</p></button></a>
                         <ul class="dropdown-menu">
-                          <li class="dropdown-menu-item">
-                            <a href="./MappingServlet?pageid=login">Login</a>
-                          </li>
-                          <li class="dropdown-menu-item">
-                            <a href="./MappingServlet?pageid=register">Register</a>
-                          </li>
+                            <a href="./MappingServlet?pageid=login"> <li class="dropdown-menu-item">
+                          Login
+                          </li></a>
+                            <a href="./MappingServlet?pageid=register"><li class="dropdown-menu-item">
+                           Register
+                          </li></a>
                         </ul>
                       </li>
                     </ul>
@@ -56,12 +56,12 @@
                       <li class="nav-item nav-item-dropdown">
                         <a class="dropdown-trigger" href="#"><button type="submit"><i class="fa fa-cart-shopping fa-xl"></i><p>My Cart</p></button></a>
                         <ul class="dropdown-menu">
-                          <li class="dropdown-menu-item">
-                            <a href="./MappingServlet?pageid=login">My Cart</a>
-                          </li>
-                          <li class="dropdown-menu-item">
-                            <a href="./MappingServlet?pageid=login">Orders</a>
-                          </li>
+                            <a href="./MappingServlet?pageid=login"><li class="dropdown-menu-item">
+                           My Cart
+                          </li></a>
+                            <a href="./MappingServlet?pageid=login"> <li class="dropdown-menu-item">
+                           Orders
+                          </li></a>
                         </ul>
                       </li>
                     </ul>

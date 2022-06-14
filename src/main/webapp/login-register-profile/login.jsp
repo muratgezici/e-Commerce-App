@@ -12,13 +12,13 @@
 <body>
 <div><jsp:include page="../header.jsp" /></div>
     <div class="content">
-        <form class="loginform" action="" width="500px">
+        <form class="loginform" action="MappingServlet" method="post" width="500px">
             <h3>Login</h3>
             <input type="text" placeholder="Username or e-Mail address" name="username">
             <input type="text" placeholder="Password" name="password">
             <div>
-                <button type="submit"><p>Login</p></button>
-                <button type="submit"><p>Register</p></button>
+                <button type="submit" name="direct" value="login"><p>Login</p></button>
+                <button type="submit" name="direct" value="register"><p>Register</p></button>
             </div>
         </form>
     </div>
