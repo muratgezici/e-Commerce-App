@@ -27,7 +27,7 @@
 
     <div class="content">
         
-        <form class="loginform" action="../products.jsp" width="500px">
+        <form class="loginform" action="EditInfoServlet" method="post" width="500px">
             <h3>Edit Info</h1>
             <div><input type="text" placeholder="Name" name="name">
                 <input type="text" placeholder="Surname" name="surname"></div>
@@ -37,7 +37,7 @@
             <div> <input type="password" placeholder="Password" name="password">
                 <input type="password" placeholder="Password Again" name="password1"></div>
             <div>
-                <button type="submit"><p>Register</p></button>
+                <button type="submit" name="editflag" value="user_save"><p>Register</p></button>
             </div>
         </form>
     </div>

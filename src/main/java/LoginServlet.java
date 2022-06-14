@@ -13,7 +13,16 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/indexLoggedin.jsp");
-        dispatcher.forward(request,response);
+        ServletContext context=getServletContext();
+        String usertypeFlag=(String)context.getAttribute("usertypeFlag");
+        if(usertypeFlag==null){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/indexLoggedin.jsp");
+            dispatcher.forward(request,response);
+        }
+        else{
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/indexLoggedinSeller.jsp");
+            dispatcher.forward(request,response);
+        }
+
     }
 }

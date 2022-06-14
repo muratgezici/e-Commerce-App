@@ -16,6 +16,7 @@
             <h3>Login</h3>
             <input type="text" placeholder="Username or e-Mail address" name="username">
             <input type="text" placeholder="Password" name="password">
+            <input type="checkbox" id="usertypeFlag" name="usertypeFlag"><label for="usertypeFlag">Commerical Login</label>
             <div>
                 <button type="submit" name="direct" value="login"><p>Login</p></button>
                 <button type="submit" name="direct" value="register"><p>Register</p></button>

@@ -24,11 +24,11 @@
     <title>Document</title>
 </head>
 <body>
-<%@ include file = "../headerLoggedin.jsp" %>
+<%@ include file = "../headerLoggedinSeller.jsp" %>
 
     <div class="content">
         
-        <form class="loginform" action="../products.jsp" width="500px">
+        <form class="loginform" action="EditInfoServlet" method="post" width="500px">
             <h3>Edit Info</h1>
             <div><input type="text" placeholder="company name" name="name">
                 <input type="text" placeholder="company visible Name" name="vname"></div>
@@ -38,7 +38,7 @@
             <div> <input type="password" placeholder="password" name="password">
                 <input type="password" placeholder="password again" name="password1"></div>
             <div>
-                <button type="submit"><p>Register</p></button>
+                <button type="submit" name="editflag" value="seller_save"><p>Register</p></button>
             </div>
         </form>
     </div>

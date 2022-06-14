@@ -1,4 +1,5 @@
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,8 +45,10 @@ public class MappingServlet extends HttpServlet {
             dispatcher.forward(request,response);
         }
         else if(flag.equalsIgnoreCase("login")){
+            String temp = request.getParameter("usertypeFlag");
+            ServletContext context=getServletContext();
+            context.setAttribute("usertypeFlag",temp);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LoginServlet");
-
             dispatcher.forward(request,response);
         }
     }

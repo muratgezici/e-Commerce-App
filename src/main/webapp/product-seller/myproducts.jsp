@@ -61,11 +61,14 @@
     <title>Document</title>
 </head>
 <body>
-<%@ include file = "../headerLoggedin.jsp" %>
+<%@ include file = "../headerLoggedinSeller.jsp" %>
     <div class="content">
         <div>
             <div class="newproduct">
-                <h3>My Products</h3><button>Add a New Product</button>
+                <h3>My Products</h3>
+                <form action="ProductOperationServlet" method="post">
+                    <button type="submit" name="action" value="add">Add a New Product</button>
+                </form>
             </div>
             <table>
                 <tr>
@@ -76,122 +79,14 @@
                     <th>Actions</th>
                 </tr>
                 <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
+                    <td> <img src="./img/quickbuy.png" alt=""> </td>
                     <td> Nerf Gun </td>
                     <td> 21 </td>
                     <td> 21.11.21 </td>
                     <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
-                        </form> 
-                         </td>
-                </tr>
-                <tr>
-                    <td> <img src="../img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
-                    <td>
-                        <form class="actionform" action="">
-                            <button name="delete" value="0" type="submit">Delete</button>
-                            <button name="edit" value="1" type="submit">Edit</button>
+                        <form class="actionform" action="ProductOperationServlet" method="post">
+                            <button name="action" value="delete" type="submit">Delete</button>
+                            <button name="action" value="edit" type="submit">Update</button>
                         </form> 
                          </td>
                 </tr>

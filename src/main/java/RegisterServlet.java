@@ -12,6 +12,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login-register-profile/login.jsp");
+        dispatcher.forward(request,response);
     }
 }

@@ -27,7 +27,7 @@
 
     <div class="content">
         
-        <form class="loginform" action="../products.jsp" width="500px">
+        <form class="loginform" action="RegisterServlet" method="post" width="500px">
             <h3>Customer Registiration</h1>
             <div><input type="text" placeholder="Name" name="name">
                 <input type="text" placeholder="Surname" name="surname"></div>

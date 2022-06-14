@@ -11,16 +11,16 @@
     <title>Document</title>
 </head>
 <body>
-<%@ include file = "../headerLoggedin.jsp" %>
+<%@ include file = "../headerLoggedinSeller.jsp" %>
     <div class="content">
         
-        <form class="loginform" action="../products.jsp" width="500px">
+        <form class="loginform" action="ProductOperationServlet" method="post" width="500px">
             <h3>Add Product</h1>
             <div><input type="text" placeholder="product name" name="pname">
                 <input type="text" placeholder="product quantity" name="quantity"></div>
             <div><input type="text" placeholder="price" name="price">
                 <input type="text" placeholder="image" name="image"></div>
-                <button type="submit"><p>Add product</p></button>
+                <button type="submit" name="action" value="add-save"><p>Add product</p></button>
             </div>
         </form>
     </div>

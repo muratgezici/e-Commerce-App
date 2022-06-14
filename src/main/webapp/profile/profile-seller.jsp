@@ -12,13 +12,13 @@
     <title>Document</title>
 </head>
 <body>
-<%@ include file = "../headerLoggedin.jsp" %>
+<%@ include file = "../headerLoggedinSeller.jsp" %>
     <div class="content">
         <div class="img-edit">
           <form action="">
             
               <button>
-                <img src="../img/quickbuy_small.png" alt=""><div><i class="fa fa-pen fa-2xl"> </div></i>
+                <img src="./img/quickbuy_small.png" alt=""><div><i class="fa fa-pen fa-2xl"> </div></i>
               </button>
            
           </form>
@@ -30,7 +30,9 @@
           <p>e-mail: migros@testmail.com</p>
           <p>Address:
              ankara /bilkent /ankara /0666 /ankara /bilkensadadssdadadadsadasdasdsad /migros square</p>
-          <button>Edit Information</button>
+            <form action="EditInfoServlet" method="post">
+                <button type="submit" name="editflag" value="seller_edit">Edit Information</button>
+            </form>
         </div>
       </div>
 </body>

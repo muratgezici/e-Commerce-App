@@ -13,8 +13,8 @@
    
 </head>
 <body>
-<%@ include file = "headerLoggedin.jsp" %>
-<p>Hello customer</p>
+<%@ include file = "headerLoggedinSeller.jsp" %>
+<p>Hello, Seller</p>
     
 </body>
 </html>

@@ -20,7 +20,7 @@
         <form action="">
           
             <button>
-              <img src="../img/quickbuy_small.png" alt=""><div><i class="fa fa-pen fa-2xl"> </div></i>
+              <img src="./img/quickbuy_small.png" alt=""><div><i class="fa fa-pen fa-2xl"> </div></i>
             </button>
          
         </form>
@@ -32,7 +32,10 @@
         <p>e-mail: mgezici@testmail.com</p>
         <p>Address:
            ankara /bilkent /ankara /0666 /ankara /bilkensadadssdadadadsadasdasdsad</p>
-        <button>Edit Information</button>
+          <form action="EditInfoServlet" method="post">
+              <button type="submit" name="editflag" value="user_edit">Edit Information</button>
+          </form>
+
       </div>
     </div>
 </body>

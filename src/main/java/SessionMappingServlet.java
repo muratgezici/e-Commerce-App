@@ -28,6 +28,19 @@ public class SessionMappingServlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
             dispatcher.forward(request,response);
         }
+
+        else if(pageid.equalsIgnoreCase("profile-S")){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profile/profile-seller.jsp");
+            dispatcher.forward(request,response);
+        }
+        else if(pageid.equalsIgnoreCase("myproducts-S")){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-seller/myproducts.jsp");
+            dispatcher.forward(request,response);
+        }
+        else if(pageid.equalsIgnoreCase("home-S")){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/indexLoggedinSeller.jsp");
+            dispatcher.forward(request,response);
+        }
     }
 
     @Override
