@@ -13,6 +13,7 @@
    
 </head>
 <body>
+
 <%@ include file = "headerLoggedin.jsp" %>
 <p>Hello customer</p>
     

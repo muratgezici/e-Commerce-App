@@ -16,10 +16,18 @@ public class LoginServlet extends HttpServlet {
         ServletContext context=getServletContext();
         String usertypeFlag=(String)context.getAttribute("usertypeFlag");
         if(usertypeFlag==null){
+
+            HttpSession session=request.getSession();
+            session.setAttribute("name","exists");
+            session.setAttribute("userType","customer");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/indexLoggedin.jsp");
             dispatcher.forward(request,response);
         }
         else{
+
+            HttpSession session=request.getSession();
+            session.setAttribute("name","exists");
+            session.setAttribute("userType","commercial");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/indexLoggedinSeller.jsp");
             dispatcher.forward(request,response);
         }

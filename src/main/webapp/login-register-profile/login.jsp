@@ -17,7 +17,7 @@
             <input type="text" placeholder="Username or e-Mail address" name="username">
             <input type="text" placeholder="Password" name="password">
             <div class="checkbox">
-                <input type="checkbox" id="usertypeFlag" name="usertypeFlag"><label for="usertypeFlag">Commerical Login</label>
+                <input type="checkbox" id="usertypeFlag" name="usertypeFlag"><label for="usertypeFlag">Commercial Login</label>
             </div>
             <div>
                 <button type="submit" name="direct" value="login"><p>Login</p></button>

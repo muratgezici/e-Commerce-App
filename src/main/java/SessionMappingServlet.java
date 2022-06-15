@@ -8,7 +8,15 @@ public class SessionMappingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageid = request.getParameter("pageid");
-        if(pageid.equalsIgnoreCase("profile")){
+
+        HttpSession session=request.getSession();
+        if (session == null || session.getAttribute("userType") == null) {
+            response.sendRedirect("RedirectServlet");
+        }
+        else if(pageid==null){
+            response.sendRedirect("RedirectServlet");
+        }
+        else if(pageid.equalsIgnoreCase("profile")){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profile/profile-user.jsp");
             dispatcher.include(request,response);
         }
@@ -26,6 +34,7 @@ public class SessionMappingServlet extends HttpServlet {
         }
         else if(pageid.equalsIgnoreCase("logout")){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+            session.invalidate();
             dispatcher.forward(request,response);
         }
 

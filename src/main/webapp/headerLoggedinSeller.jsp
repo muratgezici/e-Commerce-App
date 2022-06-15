@@ -12,6 +12,15 @@
    
 </head>
 <body>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    if(session.getAttribute("name")==null){
+        response.sendRedirect("index.jsp");
+    }
+    else if(session.getAttribute("userType").toString().equalsIgnoreCase("customer")){
+        response.sendRedirect("indexLoggedin.jsp");
+    }
+%>
 <header>
     <div class="header">
         <div id="headerleftside">

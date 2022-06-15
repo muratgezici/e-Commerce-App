@@ -14,7 +14,12 @@ public class EditInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String flag= request.getParameter("editflag");
 
-        if(flag.equalsIgnoreCase("user_edit")){
+        HttpSession session=request.getSession();
+        if (session == null || session.getAttribute("name") == null) {
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        }
+
+        else if(flag.equalsIgnoreCase("user_edit")){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profile/edit-user.jsp");
             dispatcher.forward(request,response);
         }

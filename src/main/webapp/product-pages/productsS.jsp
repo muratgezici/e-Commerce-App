@@ -14,7 +14,7 @@
 <%@ include file = "../headerLoggedinSeller.jsp" %>
     <div class="content">
         <div class="leftmenu">
-            <h5>Categories</h1>
+            <h5>Categories</h5>
             <ul>
                 <li>
                     <label for="touch"><span>Spaceships</span></label>               

@@ -13,7 +13,12 @@ public class ProductOperationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if(action.equalsIgnoreCase("add")){
+
+        HttpSession session=request.getSession();
+        if (session == null || session.getAttribute("name") == null) {
+            response.sendRedirect("RedirectServlet");
+        }
+      else if(action.equalsIgnoreCase("add")){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-seller/addproduct.jsp");
             dispatcher.forward(request,response);
         }
