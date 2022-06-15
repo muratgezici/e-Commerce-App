@@ -12,12 +12,12 @@ public class MongoDBCustomer {
         System.out.println(database);
 
         MongoCollection collectionU = database.getCollection("users-customer");
-        Document document1 = new Document().
-                append("name", "Murat").
-                append("surname", "Gezici").append("username", "mgezici").
-                append("email", "mgez@windowslive.com").append("address", "Ankara Golbasi").
-                append("password", "123");
-        collectionU.insertOne(document1);
+    //    Document document1 = new Document().
+        //        append("name", "Murat").
+        //        append("surname", "Gezici").append("username", "mgezici").
+        //        append("email", "mgez@windowslive.com").append("address", "Ankara Golbasi").
+        //        append("password", "123");
+       // collectionU.insertOne(document1);
 
         return collectionU;
     }

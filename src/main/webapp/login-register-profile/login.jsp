@@ -23,6 +23,9 @@
                 <button type="submit" name="direct" value="login"><p>Login</p></button>
                 <button type="submit" name="direct" value="register"><p>Register</p></button>
             </div>
+            <% String message = (String) session.getAttribute("message");
+                session.setAttribute("message", "");%>
+            <p class="warning"><%= message==null ? "" : message%></p>
         </form>
     </div>
 </body>

@@ -18,7 +18,7 @@
         response.sendRedirect("index.jsp");
     }
     else if(session.getAttribute("userType").toString().equalsIgnoreCase("commercial")){
-        response.sendRedirect("indexLoggedinSeller.jsp");
+        response.sendRedirect("RedirectServlet");
     }
 %>
 <header>

@@ -12,10 +12,10 @@ public class MongoDBCommercial {
         System.out.println(database);
 
         MongoCollection collectionS = database.getCollection("users-commercial");
-        Document document1 = new Document().
-                append("company_name", "Migros Ticaret A.Ş.").
-                append("company_sname", "Migros").append("username", "migros").append("email", "migros@migros.com").append("address", "Istanbul Merkez Ofis").append("password", "123");
-        collectionS.insertOne(document1);
+      //  Document document1 = new Document().
+      //          append("company_name", "Migros Ticaret A.Ş.").
+      //          append("company_sname", "Migros").append("username", "migros").append("email", "migros@migros.com").append("address", "Istanbul Merkez Ofis").append("password", "123");
+     //   collectionS.insertOne(document1);
 
         return collectionS;
     }

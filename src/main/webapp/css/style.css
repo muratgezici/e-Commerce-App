@@ -130,4 +130,11 @@ button:hover{
 .fa{
     color:#7ba6a2;
 }
+.warning{
+    font-size: 11px;
+    width: fit-content;
+    height: fit-content;
+    color:rgb(255, 0, 0);
+
+}
 

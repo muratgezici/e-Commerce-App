@@ -18,7 +18,7 @@
         response.sendRedirect("index.jsp");
     }
     else if(session.getAttribute("userType").toString().equalsIgnoreCase("customer")){
-        response.sendRedirect("indexLoggedin.jsp");
+        response.sendRedirect("RedirectServlet");
     }
 %>
 <header>
