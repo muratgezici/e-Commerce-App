@@ -1,3 +1,4 @@
+<%@ page import="Database.Product" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,18 +30,17 @@
 </head>
 <body>
 <%@ include file = "../headerLoggedinSeller.jsp" %>
-    <div class="content">
-        <div><img src="./img/quickbuy.png" alt="">
-        <p>Placeholder item header</p>
-        <p>Price: 15.00TL</p>
+<% Product p = (Product) request.getAttribute("selectedproduct");%>
+<div class="content">
+    <div><img src="./img/quickbuy.png" alt="">
+        <p><%=p.getName()%></p>
+        <p><%=p.getPrice()%></p>
         <button value="Add to cart">Add to cart</button>
+    </div>
+    <div class="iteminfo"><p> <%=p.getDesc()%></p>
+
+    </div>
+
 </div>
-        <div class="iteminfo"><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam consequuntur ipsam, eum reiciendis obcaecati reprehenderit, accusantium nesciunt saepe molestias voluptate facilis cumque delectus repellat veritatis. Repellat officiis exercitationem ea aliquam?
-        Debitis molestiae quisquam explicabo maiores impedit ullam placeat dicta consequuntur odio quibusdam numquam, cum a nobis reiciendis enim delectus nesciunt obcaecati neque adipisci possimus consequatur? Assumenda iure nesciunt neque magnam.
-        Quaerat doloremque eius nobis molestias cumque voluptatum aliquid, pariatur impedit fugit veniam totam sit facere delectus quam. Natus atque magnam porro molestias eligendi fugit ipsum corporis modi, rem, exercitationem eaque.</p>
-       
-    </div>
-        
-    </div>
 </body>
 </html>

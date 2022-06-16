@@ -1,40 +1,23 @@
+import Database.MongoDBProduct;
+import Database.Product;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "ProductViewServlet", value = "/ProductViewServlet")
 public class ProductViewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String itemid = request.getParameter("itemid");
-        String userType = request.getParameter("utype");
+
         HttpSession session=request.getSession();
-        if(userType!=null && userType.equalsIgnoreCase("A")){
-            if(itemid.equalsIgnoreCase("1")){
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-pages/productinfo.jsp");
                 dispatcher.forward(request,response);
-            }
-        }
-
-        else if (session == null || session.getAttribute("name") == null) {
+        if (session == null || session.getAttribute("name") == null) {
             response.sendRedirect("RedirectServlet");
-        }
-        else if(itemid.length()!=1 || userType.length()!=1){
-            response.sendRedirect("RedirectServlet");
-        }
-
-       else if(userType.equalsIgnoreCase("S")){
-            if(itemid.equalsIgnoreCase("1")){
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-pages/productinfoS.jsp");
-                dispatcher.forward(request,response);
-            }
-        }
-      else if(userType.equalsIgnoreCase("U")){
-            if(itemid.equalsIgnoreCase("1")){
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-pages/productinfoU.jsp");
-                dispatcher.forward(request,response);
-            }
         }
 
     }
@@ -43,7 +26,13 @@ public class ProductViewServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageid = request.getParameter("productfilter");
         HttpSession session=request.getSession();
+        List<Product> products = MongoDBProduct.MongoGetProducts();
+        request.setAttribute("productsAll", products);
+
+        List<Product> products_filtered = MongoDBProduct.MongoGetProductsFilter("ss");
+
         if(pageid.equalsIgnoreCase("none")){
+
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-pages/products.jsp");
             dispatcher.forward(request,response);
         }

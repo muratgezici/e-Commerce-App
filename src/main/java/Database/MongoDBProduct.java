@@ -5,6 +5,8 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,14 +21,14 @@ public class MongoDBProduct {
 
         MongoCollection collection = database.getCollection("products");
         ArrayList<String> as = new ArrayList();
-        as.add("s");
-        as.add("b");
-        Document document1 = new Document().
-                append("sid", "birüçbeş").
-                append("name", "Migros").append("desc", "migros").
-                append("price", "migros@migros.com").append("stock_quantity", "Istanbul Merkez Ofis").
-                append("add_date", "123").append("ex_date", "123").append("category", "123");//.append("tags",as);
-        collection.insertOne(document1);
+      //  as.add("s");
+     //   as.add("b");
+     //   Document document1 = new Document().
+      //          append("sid", "migros").
+       //        append("name", "Migros").append("desc", "migros").
+        //        append("price", "migros@migros.com").append("stock_quantity", "Istanbul Merkez Ofis").
+      //          append("add_date", "12/12/2022").append("ex_date", "12/12/2022").append("category", "123");//.append("tags",as);
+      //  collection.insertOne(document1);
 
         return collection;
     }
@@ -38,7 +40,7 @@ public class MongoDBProduct {
                 while (cursor.hasNext()) {
                     Document temp = cursor.next();
 
-                    String id = temp.getString("_id");
+                    String id = temp.getObjectId("_id").toString();
 
                     if(id.equals(_id)){
                         String sid = temp.getString("sid");
@@ -46,11 +48,20 @@ public class MongoDBProduct {
                         String desc = temp.getString("desc");
                         String price = temp.getString("price");
                         String stock_quantity = temp.getString("stock_quantity");
-                        Date add_date = temp.getDate("add_date");
-                        Date ex_date = temp.getDate("ex_date");
                         String category = temp.getString("category");
+
+                        String add_date = temp.getString("add_date");
+                        String ex_date = temp.getString("ex_date");
+
+                        Date date1=null,date2=null;
+                        try {
+                            date1 = new SimpleDateFormat("yyyy-mm-dd").parse(add_date);
+                            date2=new SimpleDateFormat("yyyy-mm-dd").parse(ex_date);
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
                         //ArrayList<String> tags = (ArrayList<String>) temp.getList("tags", String.class);
-                            Product pro = new Product(id,sid,name,desc,price,stock_quantity,add_date,ex_date,category);
+                            Product pro = new Product(id,sid,name,desc,price,stock_quantity,date1,date2,category);
                         return pro;
                     }
                 }
@@ -59,6 +70,78 @@ public class MongoDBProduct {
             }
             return null;
         }
+    public static List<Product> MongoGetProducts () {
+        MongoCollection collection = ConnectionProducts();
+        FindIterable<Document> fi = collection.find();
+        MongoCursor<Document> cursor = fi.iterator();
+        List<Product> allproducts = new ArrayList<Product>();
+        try {
+            while (cursor.hasNext()) {
+                Document temp = cursor.next();
+
+                    String id = temp.getObjectId("_id").toString();
+                    String sid = temp.getString("sid");
+                    String name = temp.getString("name");
+                    String desc = temp.getString("desc");
+                    String price = temp.getString("price");
+                    String stock_quantity = temp.getString("stock_quantity");
+                    String category = temp.getString("category");
+                    String add_date = temp.getString("add_date");
+                    String ex_date = temp.getString("ex_date");
+                    Date date1=null,date2=null;
+                try {
+                   date1 = new SimpleDateFormat("yyyy-mm-dd").parse(add_date);
+                   date2=new SimpleDateFormat("yyyy-mm-dd").parse(ex_date);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                    //ArrayList<String> tags = (ArrayList<String>) temp.getList("tags", String.class);
+                    Product pro = new Product(id,sid,name,desc,price,stock_quantity,date1,date2,category);
+                    allproducts.add(pro);
+                }
+
+            }
+         finally {
+            cursor.close();
+
+        }
+        return allproducts;
+    }
+
+    public static List<Product> MongoGetProductsFilter (String search){
+        MongoCollection collection = ConnectionProducts();
+        FindIterable<Document> fi = collection.find();
+        MongoCursor<Document> cursor = fi.iterator();
+        List<Product> allproducts = new ArrayList<Product>();
+        try {
+            while (cursor.hasNext()) {
+                Document temp = cursor.next();
+                String name = temp.getString("name");
+                String category = temp.getString("category");
+                String desc = temp.getString("desc");
+
+               //////  StringMatch next = finder.findNext();
+
+                if(1==1){
+                    String sid = temp.getString("sid");
+                    String id = temp.getObjectId("_id").toString();
+                    String price = temp.getString("price");
+                    String stock_quantity = temp.getString("stock_quantity");
+                    Date add_date = temp.getDate("add_date");
+                    Date ex_date = temp.getDate("ex_date");
+
+                    //ArrayList<String> tags = (ArrayList<String>) temp.getList("tags", String.class);
+                    Product pro = new Product(id,sid,name,desc,price,stock_quantity,add_date,ex_date,category);
+                    allproducts.add(pro);
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+        return allproducts;
+    }
+
+
         public static void mongoInsert(String sid, String name, String desc, String price, String stock_quantity, String add_date, String ex_date, String category){
             MongoCollection collection = ConnectionProducts();
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -71,7 +154,7 @@ public class MongoDBProduct {
             collection.insertOne(document1);
         }
 
-        public static List<Product> mongoViewProductsSeller(int sid){
+        public static List<Product> mongoViewProductsSeller(String sid){
             MongoCollection collection = ConnectionProducts();
             List<Product> list=new ArrayList<Product>();
             FindIterable<Document> fi = collection.find();
@@ -80,19 +163,28 @@ public class MongoDBProduct {
                 while (cursor.hasNext()) {
                     Document temp = cursor.next();
 
-                    String _id = temp.getObjectId("_id").toString();
-                    int uidCheck = temp.getInteger("uid");
-                    if(uidCheck==sid){
+                    String uidCheck = temp.getString("sid");
+                    System.out.println("uidcheck "+uidCheck);
+                    if(uidCheck.equalsIgnoreCase(sid)){
                         String id = temp.getObjectId("_id").toString();
                         String sid1 = temp.getString("sid");
                         String name = temp.getString("name");
                         String desc = temp.getString("desc");
                         String price = temp.getString("price");
                         String stock_quantity = temp.getString("stock_quantity");
-                        Date add_date = temp.getDate("add_date");
-                        Date ex_date = temp.getDate("ex_date");
                         String category = temp.getString("category");
-                        Product pro = new Product(id,sid1,name,desc,price,stock_quantity,add_date,ex_date,category);
+
+                        String add_date = temp.getString("add_date");
+                        String ex_date = temp.getString("ex_date");
+                        Date date1=null,date2=null;
+                        try {
+                            date1 = new SimpleDateFormat("yyyy-mm-dd").parse(add_date);
+                            date2=new SimpleDateFormat("yyyy-mm-dd").parse(ex_date);
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        Product pro = new Product(id,sid1,name,desc,price,stock_quantity,date1,date2,category);
                         list.add(pro);
                     }
                 }
@@ -109,7 +201,7 @@ public class MongoDBProduct {
             try {
                 while (cursor.hasNext()) {
                     Document temp = cursor.next();
-                    if(_id.equals(temp.getObjectId("_id").toString())){
+                    if(_id.equalsIgnoreCase(temp.getObjectId("_id").toString())){
                         collection.deleteOne(temp);
                         return true;
                     }

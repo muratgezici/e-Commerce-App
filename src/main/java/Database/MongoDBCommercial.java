@@ -58,7 +58,7 @@ public class MongoDBCommercial {
         }
 
 
-public static void MongoDBUpdateCommercial(String _id, String cname, String cshortname, String username, String email, String address, String password){
+public static void MongoDBUpdateCommercial(String _id, String cname, String cshortname, String username, String email, String address){
     MongoCollection collection = ConnectionUserCommercial();
     FindIterable<Document> fi = collection.find();
     MongoCursor<Document> cursor = fi.iterator();
@@ -69,8 +69,7 @@ public static void MongoDBUpdateCommercial(String _id, String cname, String csho
                 Document updatedVal = new Document().
                         append("company_name", cname).
                         append("company_sname", cshortname).append("username", username).
-                        append("email", email).append("address", address).
-                        append("password", password);
+                        append("email", email).append("address", address);
                 Bson updateOp = new Document("$set", updatedVal);
                collection.updateOne(temp,updateOp);
             }

@@ -1,3 +1,4 @@
+<%@ page import="Database.Commercial" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +24,16 @@
            
           </form>
         </div>
+        <%
+       Commercial comm = (Commercial) session.getAttribute("userObject");
+        %>
         <div class="userinfo">
-          <p>Company Name: Migros AŞ</p>
-          <p>Company Short Name: Migros</p>
-          <p>Username: migros_quickbuy</p>
-          <p>e-mail: migros@testmail.com</p>
+          <p>Company Name: <%=comm.getCname()%></p>
+          <p>Company Short Name: <%=comm.getCshortname()%></p>
+          <p>Username: <%=comm.getUsername()%></p>
+          <p>e-mail: <%=comm.getEmail()%></p>
           <p>Address:
-             ankara /bilkent /ankara /0666 /ankara /bilkensadadssdadadadsadasdasdsad /migros square</p>
+              <%=comm.getAddress()%></p>
             <form action="EditInfoServlet" method="post">
                 <button type="submit" name="editflag" value="seller_edit">Edit Information</button>
             </form>

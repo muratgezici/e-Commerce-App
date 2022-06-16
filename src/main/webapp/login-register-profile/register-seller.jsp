@@ -28,7 +28,7 @@
     <div class="content">
         
         <form class="loginform" action="RegisterServlet" method="post" width="500px">
-            <h3>Seller Registiration</h3>
+            <h3>Seller Registration</h3>
             <div><input type="text" placeholder="company name" name="name">
                 <input type="text" placeholder="company visible Name" name="vname"></div>
             <div><input type="text" placeholder="company e-mail" name="e-mail">

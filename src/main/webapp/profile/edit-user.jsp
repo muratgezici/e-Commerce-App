@@ -1,3 +1,4 @@
+<%@ page import="Database.Customer" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,16 +25,18 @@
 </head>
 <body>
 <%@ include file = "../headerLoggedin.jsp" %>
-
+<%
+    Customer cus = (Customer) session.getAttribute("userObject");
+%>
     <div class="content">
         
         <form class="loginform" action="EditInfoServlet" method="post" width="500px">
-            <h3>Edit Info</h1>
-            <div><input type="text" placeholder="Name" name="name">
-                <input type="text" placeholder="Surname" name="surname"></div>
-            <div><input type="text" placeholder="e-mail" name="e-mail">
-                <input type="text" placeholder="username" name="username"></div>
-                <input type="text" placeholder="address" name="address">
+            <h3>Edit Info</h3>
+            <div><input type="text" placeholder="Name" name="name" value="<%=cus.getName()%>">
+                <input type="text" placeholder="Surname" name="surname" value="<%=cus.getSurname()%>"></div>
+            <div><input type="text" placeholder="e-mail" name="e-mail" value="<%=cus.getEmail()%>">
+                <input type="text" placeholder="username" name="username" value="<%=cus.getUsername()%>"></div>
+                <input type="text" placeholder="address" name="address" value="<%=cus.getAddress()%>">
             <div> <input type="password" placeholder="Password" name="password">
                 <input type="password" placeholder="Password Again" name="password1"></div>
             <div>

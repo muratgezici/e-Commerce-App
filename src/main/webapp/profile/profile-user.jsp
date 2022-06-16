@@ -1,3 +1,4 @@
+<%@ page import="Database.Customer" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,13 +26,16 @@
          
         </form>
       </div>
+        <%
+            Customer cus = (Customer) session.getAttribute("userObject");
+        %>
       <div class="userinfo">
-        <p>Name: Murat</p>
-        <p>Surname: Gezici</p>
-        <p>Username: mgezici</p>
-        <p>e-mail: mgezici@testmail.com</p>
+        <p>Name: <%=cus.getName()%></p>
+        <p>Surname: <%=cus.getSurname()%></p>
+        <p>Username: <%=cus.getUsername()%></p>
+        <p>e-mail: <%=cus.getEmail()%></p>
         <p>Address:
-           ankara /bilkent /ankara /0666 /ankara /bilkensadadssdadadadsadasdasdsad</p>
+            <%=cus.getAddress()%></p>
           <form action="EditInfoServlet" method="post">
               <button type="submit" name="editflag" value="user_edit">Edit Information</button>
           </form>

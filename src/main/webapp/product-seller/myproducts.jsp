@@ -1,3 +1,9 @@
+<%@ page import="Database.Commercial" %>
+<%@ page import="Database.Product" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Database.MongoDBProduct" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DateFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +68,13 @@
 </head>
 <body>
 <%@ include file = "../headerLoggedinSeller.jsp" %>
+<%
+    Commercial comm = (Commercial) session.getAttribute("userObject");
+    String id = comm.getId();
+    System.out.println(id);
+    ArrayList<Product> products = (ArrayList) MongoDBProduct.mongoViewProductsSeller(id);
+%>
+
     <div class="content">
         <div>
             <div class="newproduct">
@@ -76,20 +89,40 @@
                     <th>Product Name</th>
                     <th>Product Stock</th>
                     <th>Product Price</th>
+                    <th>Add Date</th>
+                    <th>Expire Date</th>
+                    <th>Category</th>
                     <th>Actions</th>
                 </tr>
+
+                <% for(Product p:products){
+                    System.out.println(p.getId());
+
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                    String addDate = dateFormat.format(p.getAdd_date());
+                    String exDate = dateFormat.format(p.getEx_date());
+                %>
                 <tr>
                     <td> <img src="./img/quickbuy.png" alt=""> </td>
-                    <td> Nerf Gun </td>
-                    <td> 21 </td>
-                    <td> 21.11.21 </td>
+                    <td> <%=p.getName()%> </td>
+                    <td> <%=p.getStock_quantity()%> </td>
+                    <td> <%=p.getPrice()%> </td>
+                    <td> <%=addDate%> </td>
+                    <td> <%=exDate%> </td>
+                    <td> <%=p.getCategory()%> </td>
+
                     <td>
                         <form class="actionform" action="ProductOperationServlet" method="post">
+                            <input type="hidden" name="productid" value="<%=p.getId()%>">
                             <button name="action" value="delete" type="submit">Delete</button>
                             <button name="action" value="edit" type="submit">Update</button>
-                        </form> 
-                         </td>
+                        </form>
+                    </td>
                 </tr>
+
+
+               <% }%>
+
 
             </table>
         </div>

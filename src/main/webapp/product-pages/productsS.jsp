@@ -1,3 +1,5 @@
+<%@ page import="Database.Product" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,29 +78,27 @@
         <div class="products">
             <table>
                 <th colspan="3">Products in "x" category</th>
-                <tr>
-                    <td class="productitem">
-                        <a href="./ProductViewServlet?itemid=1&utype=S"><img src="./img/quickbuy.png" alt=""></a>
-                       <p>Header</p>
-                       <p>Price: 12.32TL</p>
-                    </td>
-                    <td class="productitem">
-                      <img src="quickbuy.png" alt="">
-                      <p>Header</p>
-                      <p>Price: 12.32TL</p>
-                   </td>
-                   <td class="productitem">
-                    <img src="quickbuy.png" alt="">
-                    <p>Header</p>
-                    <p>Price: 12.32TL</p>
-                 </td>
-                 <td class="productitem">
-                  <img src="quickbuy.png" alt="">
-                  <p>Header</p>
-                  <p>Price: 12.32TL</p>
-               </td>
-                </tr>
-        
+                <%
+                    ArrayList<Product> pro = (ArrayList<Product>)request.getAttribute("productsAll");
+                    int colcounter =0;
+                    int rowcounter=0;
+                    for(Product p:pro){
+                        if(rowcounter%4==0){%><tr><%}%>
+                <td class="productitem">
+                    <form action="ProductItemViewServlet" method="post">
+                        <input type="" name="selectedproduct" value="<%=p.getId()%>" hidden>
+
+                        <button type="submit">
+                            <img src="./img/quickbuy.png" alt="">
+                            <p><%=p.getName()%></p>
+                            <p>Price: <%=p.getPrice()%></p>
+                        </button>
+                    </form>
+
+
+                </td>
+                <% rowcounter++; if(rowcounter%4==0){ colcounter++;%></tr><%}%>
+                <% }%>
             </table>
         </div>
     </div>

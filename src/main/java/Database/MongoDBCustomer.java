@@ -60,7 +60,7 @@ public class MongoDBCustomer {
     }
 
 
-    public static void MongoDBUpdateCustomer(String _id, String cname, String cshortname, String username, String email, String address, String password){
+    public static void MongoDBUpdateCustomer(String _id, String cname, String cshortname, String username, String email, String address){
         MongoCollection collection = ConnectionUserCustomer();
         FindIterable<Document> fi = collection.find();
         MongoCursor<Document> cursor = fi.iterator();
@@ -71,8 +71,7 @@ public class MongoDBCustomer {
                     Document updatedVal = new Document().
                             append("name", cname).
                             append("surname", cshortname).append("username", username).
-                            append("email", email).append("address", address).
-                            append("password", password);
+                            append("email", email).append("address", address);
                     Bson updateOp = new Document("$set", updatedVal);
                     collection.updateOne(temp,updateOp);
                 }

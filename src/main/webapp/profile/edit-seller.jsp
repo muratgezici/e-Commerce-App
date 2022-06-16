@@ -1,3 +1,4 @@
+<%@ page import="Database.Commercial" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,16 +26,18 @@
 </head>
 <body>
 <%@ include file = "../headerLoggedinSeller.jsp" %>
-
+<%
+    Commercial comm = (Commercial) session.getAttribute("userObject");
+%>
     <div class="content">
         
         <form class="loginform" action="EditInfoServlet" method="post" width="500px">
             <h3>Edit Info</h1>
-            <div><input type="text" placeholder="company name" name="name">
-                <input type="text" placeholder="company visible Name" name="vname"></div>
-            <div><input type="text" placeholder="company e-mail" name="e-mail">
-                <input type="text" placeholder="username" name="username"></div>
-                <input type="text" placeholder="company address" name="address">
+            <div><input type="text" placeholder="company name" name="name" value="<%=comm.getCname()%>">
+                <input type="text" placeholder="company visible Name" name="vname" value="<%=comm.getCshortname()%>"></div>
+            <div><input type="text" placeholder="company e-mail" name="e-mail" value="<%=comm.getEmail()%>">
+                <input type="text" placeholder="username" name="username" value="<%=comm.getUsername()%>"></div>
+                <input type="text" placeholder="company address" name="address" value="<%=comm.getAddress()%>">
             <div> <input type="password" placeholder="password" name="password">
                 <input type="password" placeholder="password again" name="password1"></div>
             <div>

@@ -1,3 +1,8 @@
+<%@ page import="Database.MongoDBProduct" %>
+<%@ page import="Database.Commercial" %>
+<%@ page import="Database.Product" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,15 +18,31 @@
 <body>
 <%@ include file = "../headerLoggedinSeller.jsp" %>
     <div class="content">
-        
+
         <form class="loginform" action="ProductOperationServlet" method="post" width="500px">
-            <h3>Add Product</h1>
-            <div><input type="text" placeholder="product name" name="pname">
-                <input type="text" placeholder="product quantity" name="quantity"></div>
-            <div><input type="text" placeholder="price" name="price">
-                <input type="text" placeholder="image" name="image"></div>
-                <button type="submit" name="action" value="add-save"><p>Add product</p></button>
+            <h3>Add Product</h3>
+            <div>
+                <input type="text" placeholder="product name" name="pname">
+
             </div>
+            <div>Image: </div>
+            <div><input type="file" style="width: 200px;"name="image"></div>
+
+            <div>
+                <textarea name="desc" cols="40" placeholder="product description" rows="5"></textarea>
+            </div>
+            <div>
+                <input type="text" placeholder="price" name="price">
+                <input type="text" placeholder="product quantity" name="quantity">
+            </div>
+            <div>
+                <input type="date" placeholder="today's date" name="add_date">
+                <input type="date" placeholder="expiration date" name="ex_date">
+                <input type="text" placehoder="category" name="category">
+
+            </div>
+            <button type="submit" name="action" value="add-save"><p>Add product</p></button>
+
         </form>
     </div>
 </body>
