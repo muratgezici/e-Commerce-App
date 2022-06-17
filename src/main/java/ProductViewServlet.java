@@ -33,6 +33,7 @@ public class ProductViewServlet extends HttpServlet {
 
         }
         else if(!search.equalsIgnoreCase(" ") && !search.equalsIgnoreCase("")){
+
             List<Product> products_filtered = MongoDBProduct.MongoGetProductsFilter(search);
             request.setAttribute("productsAll", products_filtered);
         }
