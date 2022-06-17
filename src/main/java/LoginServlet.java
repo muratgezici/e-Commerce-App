@@ -56,6 +56,7 @@ public class LoginServlet extends HttpServlet {
                 dispatcher.forward(request,response);
             }
             else{
+                session.setAttribute("messageType", "red");
                 session.setAttribute("message", "Check your credidentals!");
                 response.sendRedirect("MappingServlet?pageid=login");
             }

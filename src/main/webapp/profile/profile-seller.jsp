@@ -19,7 +19,7 @@
           <form action="">
             
               <button>
-                <img src="./img/quickbuy_small.png" alt=""><div><i class="fa fa-pen fa-2xl"> </div></i>
+                <img src="./img/quickbuy_small.png" alt=""><div><i class="fa fa-pen fa-2xl"> </i></div>
               </button>
            
           </form>

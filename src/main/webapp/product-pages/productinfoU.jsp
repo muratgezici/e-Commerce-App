@@ -35,7 +35,12 @@
     <div><img src="./img/quickbuy.png" alt="">
         <p><%=p.getName()%></p>
         <p><%=p.getPrice()%></p>
-        <button value="Add to cart">Add to cart</button>
+        <form action="CartServlet" method="post">
+            <% session.setAttribute("addCartProduct", p);
+                System.out.println(p.getName());%>
+            <button value="Add to cart">Add to cart</button>
+        </form>
+
     </div>
     <div class="iteminfo"><p> <%=p.getDesc()%></p>
 

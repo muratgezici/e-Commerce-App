@@ -35,7 +35,7 @@
     <div><img src="./img/quickbuy.png" alt="">
         <p><%=p.getName()%></p>
         <p><%=p.getPrice()%></p>
-        <button value="Add to cart">Add to cart</button>
+
     </div>
     <div class="iteminfo"><p> <%=p.getDesc()%></p>
 

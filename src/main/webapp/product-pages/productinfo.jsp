@@ -19,7 +19,6 @@
         .content .iteminfo{
             padding: 40px;
             width: 400px;
-            
         }
         .content .iteminfo{
             display: flex;
@@ -27,10 +26,10 @@
         }
     </style>
     <title>Document</title>
+
 </head>
 <body>
 <%@ include file = "../header.jsp" %>
-
 <% Product p = (Product) request.getAttribute("selectedproduct");%>
     <div class="content">
         <div><img src="./img/quickbuy.png" alt="">

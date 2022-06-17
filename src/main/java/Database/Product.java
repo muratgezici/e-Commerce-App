@@ -13,9 +13,43 @@ public class Product {
     private Date add_date;
     private Date ex_date;
     private String category;
+
+    private String status;// accepted, waiting, denied
+
+    private String amount;
    // private ArrayList<String> tags;
    // private Byte image;
 
+
+    public Product(String id, String sid, String name, String desc, String price, String stock_quantity, Date add_date, Date ex_date, String category, String status, String amount) {
+        this.id = id;
+        this.sid = sid;
+        this.name = name;
+        this.desc = desc;
+        this.price = price;
+        this.stock_quantity = stock_quantity;
+        this.add_date = add_date;
+        this.ex_date = ex_date;
+        this.category = category;
+        this.status = status;
+        this.amount = amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
 
     public Product(String id, String sid, String name, String desc, String price, String stock_quantity, Date add_date, Date ex_date, String category) {
         this.id = id;

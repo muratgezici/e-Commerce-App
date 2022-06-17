@@ -1,3 +1,5 @@
+<%@ page import="Database.Product" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,9 +36,24 @@
 </head>
 <body>
 <%@ include file = "../headerLoggedin.jsp" %>
+
+<%
+    boolean flag=true;
+    ArrayList<Product> products = new ArrayList<Product>();
+    if(session.getAttribute("cart")==null){
+        flag =false;
+    }else{
+        products = (ArrayList<Product>) session.getAttribute("cart");
+    }
+
+%>
     <div class="content">
         <div>
             <h3>My Items: </h3>
+            <% String message = (String) session.getAttribute("message");
+                String messageType = session.getAttribute("messageType")==null?"red":session.getAttribute("messageType").toString();
+                session.setAttribute("message", "");%>
+            <p class="<%= messageType.equalsIgnoreCase("green")? "warning-green":"warning"%>"><%= message==null ? "" : message%></p>
             <table>
                 <tr>
                     <th>Item Name: </th>
@@ -44,14 +61,23 @@
                     <th>Item Amount: </th>
                     <th>Actions: </th>
                 </tr>
+
+                    <%if(flag){
+                    for(Product pro:products){%>
                 <tr>
-                    <td>Nerf Gun</td>
-                    <td>227TL</td>
-                    <td class="addremove"> <form action="">
-                        <button><i class="fa-solid fa-minus"></i></button>2<button><i class="fa-solid fa-plus"></i></button>
-                    </form> </td>
-                    <td><a href="">Delete</a></td>
+                    <td><%=pro.getName()%></td>
+                    <td><%=pro.getPrice()%>TL</td>
+                    <td class="addremove">
+                        <a href="./CartServlet?ops=decrement&itemid=<%=pro.getId()%>"><i class="fa-solid fa-minus"></i></a>
+                        <%=pro.getAmount()%>
+                        <a href="./CartServlet?ops=increment&itemid=<%=pro.getId()%>"><i class="fa-solid fa-plus"></i></a>
+                     </td>
+                    <td><a href="./CartServlet?ops=delete&itemid=<%=pro.getId()%>">Delete</a></td>
                 </tr>
+                   <% }}%>
+                <form action="OrderOpsServlet" method="post">
+                    <button type="submit">Buy</button>
+                </form>
             </table>
         </div>
        

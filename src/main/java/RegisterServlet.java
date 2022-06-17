@@ -89,7 +89,7 @@ public class RegisterServlet extends HttpServlet {
            }
 
            if(message.length()<2){
-               MongoDBCustomer.mongoInsertCustomer(name,surname,username,email,address,pass);
+               MongoDBCommercial.mongoInsertCommercial(name,surname,username,email,address,pass);
                session.setAttribute("message", "register successful! please login");
                session.setAttribute("messageType", "green");
                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login-register-profile/login.jsp");

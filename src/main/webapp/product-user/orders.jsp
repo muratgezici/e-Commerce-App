@@ -1,3 +1,10 @@
+<%@ page import="Database.Order" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Database.MongoDBOrder" %>
+<%@ page import="Database.Customer" %>
+<%@ page import="Database.Product" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,24 +41,46 @@
 </head>
 <body>
 <%@ include file = "../headerLoggedin.jsp" %>
+
+<%
+    boolean flag=true;
+    ArrayList<Order> orders = new ArrayList<Order>();
+   Customer cus = (Customer)  session.getAttribute("userObject");
+        orders = MongoDBOrder.MongoGetOrdersCustomer(cus.getId());
+
+
+%>
     <div class="content">
         <div>
             <h3>My Orders: </h3>
             <table>
                 <tr>
+                    <th>Order Id: </th>
                     <th>Item Name: </th>
                     <th>Item Price: </th>
                     <th>Item Amount: </th>
                     <th>Purchase Date: </th>
-                    
+                    <th>Status: </th>
+
                 </tr>
+                <% for(Order order:orders){
+                   ArrayList<Product> pros = order.getProducts();
+                   for(Product pro:pros){
+                %>
                 <tr>
-                    <td>Nerf Gun</td>
-                    <td>227TL</td>
-                    <td>2</td>
-                    <td>12.12.12</td>
+                    <td><%=order.getOid()%></td>
+                    <td><%=pro.getName()%></td>
+                    <td><%=pro.getPrice()%>TL</td>
+                    <td><%=pro.getAmount()%></td>
+                    <%
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                        String addDate = dateFormat.format(order.getOrder_date());%>
+                    <td><%=addDate%></td>
+                    <td><%=pro.getStatus()%></td>
                     
                 </tr>
+                <%}
+                }%>
             </table>
         </div>
        
