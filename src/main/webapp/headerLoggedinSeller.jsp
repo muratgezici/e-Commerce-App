@@ -26,7 +26,7 @@
         <div id="headerleftside">
             <div id="logo"><a href="./SessionMappingServlet?pageid=home-S"><img src="./img/quickbuy-wide.png" alt=""></a></div>
                 <form action="ProductViewServlet" method="post">
-                        <div id="searchbar"><input type="search" placeholder="Search...">
+                        <div id="searchbar"><input type="search" name="searchstring"  placeholder="Search...">
                         <button type="submit" name="productfilter" value="exists-S"><i class="fa fa-search fa-xl"></i></button>
                         <button type="submit" name="productfilter" value="none-S"><i class="fa fa-store fa-xl"></i></button>
                         </div>

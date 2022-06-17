@@ -137,4 +137,11 @@ button:hover{
     color:rgb(255, 0, 0);
 
 }
+.warning-green{
+    font-size: 11px;
+    width: fit-content;
+    height: fit-content;
+    color: rgb(38, 255, 0);
+
+}
 

@@ -27,7 +27,7 @@
 <%@ include file = "../header.jsp" %>
     <div class="content">
         
-        <form class="loginform" action="RegisterServlet" method="post" width="500px">
+        <form class="loginform" action="MappingServlet" method="post" width="500px">
             <h3>Seller Registration</h3>
             <div><input type="text" placeholder="company name" name="name">
                 <input type="text" placeholder="company visible Name" name="vname"></div>
@@ -37,8 +37,11 @@
             <div> <input type="password" placeholder="password" name="password">
                 <input type="password" placeholder="password again" name="password1"></div>
             <div>
-                <button type="submit"><p>Register</p></button>
+                <button type="submit" name="direct" value="commercialReg"><p>Register</p></button>
             </div>
+            <% String message = (String) session.getAttribute("message");
+                session.setAttribute("message", "");%>
+            <p class="warning"><%= message==null ? "" : message%></p>
         </form>
     </div>
 </body>

@@ -20,6 +20,13 @@
   </properties>
 
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/net.amygdalum/stringsearchalgorithms -->
+    <dependency>
+      <groupId>net.amygdalum</groupId>
+      <artifactId>stringsearchalgorithms</artifactId>
+      <version>0.3.4</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

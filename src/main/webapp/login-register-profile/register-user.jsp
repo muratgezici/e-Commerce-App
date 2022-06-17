@@ -27,7 +27,7 @@
 
     <div class="content">
         
-        <form class="loginform" action="RegisterServlet" method="post" width="500px">
+        <form class="loginform" action="MappingServlet" method="post" width="500px">
             <h3>Customer Registiration</h1>
             <div><input type="text" placeholder="Name" name="name">
                 <input type="text" placeholder="Surname" name="surname"></div>
@@ -37,8 +37,11 @@
             <div> <input type="password" placeholder="Password" name="password">
                 <input type="password" placeholder="Password Again" name="password1"></div>
             <div>
-                <button type="submit"><p>Register</p></button>
+                <button type="submit" name="direct" value="customerReg"><p>Register</p></button>
             </div>
+                    <% String message = (String) session.getAttribute("message");
+                session.setAttribute("message", "");%>
+                <p class="warning"><%= message==null ? "" : message%></p>
         </form>
     </div>
 </body>

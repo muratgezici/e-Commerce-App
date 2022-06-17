@@ -24,8 +24,9 @@
                 <button type="submit" name="direct" value="register"><p>Register</p></button>
             </div>
             <% String message = (String) session.getAttribute("message");
+            String messageType = session.getAttribute("messageType")==null?"red":"green";
                 session.setAttribute("message", "");%>
-            <p class="warning"><%= message==null ? "" : message%></p>
+            <p class="<%= messageType.equalsIgnoreCase("green")? "warning-green":"warning"%>"><%= message==null ? "" : message%></p>
         </form>
     </div>
 </body>

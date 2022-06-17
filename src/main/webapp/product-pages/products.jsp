@@ -77,7 +77,11 @@
 
         <div class="products">
             <table>
-                <th colspan="3">Products in "x" category</th>
+                <%
+                    String search = request.getParameter("searchstring");
+                    String s = (search == null || search.equalsIgnoreCase("") || search.equalsIgnoreCase(" ")) ? "All Products" : "\""+search+"\" related products";
+                %>
+                <th colspan="3"> <%=s%></th>
                 <%
                     ArrayList<Product> pro = (ArrayList<Product>)request.getAttribute("productsAll");
                     int colcounter =0;

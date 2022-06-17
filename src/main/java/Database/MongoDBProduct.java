@@ -1,6 +1,11 @@
 package Database;
 
 import com.mongodb.client.*;
+import net.amygdalum.stringsearchalgorithms.io.CharProvider;
+import net.amygdalum.stringsearchalgorithms.io.StringCharProvider;
+import net.amygdalum.stringsearchalgorithms.search.Horspool;
+import net.amygdalum.stringsearchalgorithms.search.StringFinder;
+import net.amygdalum.stringsearchalgorithms.search.StringMatch;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -120,18 +125,47 @@ public class MongoDBProduct {
                 String category = temp.getString("category");
                 String desc = temp.getString("desc");
 
-               //////  StringMatch next = finder.findNext();
+                StringMatch nextName = null;
+                StringMatch nextCategory = null;
+                StringMatch nextDesc = null;
 
-                if(1==1){
+                String[] searchArray = search.split(" ");
+                for(String s:searchArray){
+                    Horspool stringSearch = new Horspool(s.toLowerCase());
+                    CharProvider textName = new StringCharProvider(name.toLowerCase(), 0);
+                    CharProvider textCategory = new StringCharProvider(category.toLowerCase(),0);
+                    CharProvider textDesc = new StringCharProvider(desc.toLowerCase(),0);
+
+                    StringFinder finderName = stringSearch.createFinder(textName);
+                    StringFinder finderCategory = stringSearch.createFinder(textCategory);
+                    StringFinder finderDesc = stringSearch.createFinder(textDesc);
+                    if(nextName == null)
+                    nextName = finderName.findNext();
+                    if(nextCategory == null)
+                    nextCategory = finderCategory.findNext();
+                    if(nextDesc == null)
+                    nextDesc = finderDesc.findNext();
+
+                }
+
+                if(nextName!=null || nextCategory!=null || nextDesc!=null){
                     String sid = temp.getString("sid");
                     String id = temp.getObjectId("_id").toString();
                     String price = temp.getString("price");
                     String stock_quantity = temp.getString("stock_quantity");
-                    Date add_date = temp.getDate("add_date");
-                    Date ex_date = temp.getDate("ex_date");
+
+                    String add_date = temp.getString("add_date");
+                    String ex_date = temp.getString("ex_date");
+                    Date date1=null,date2=null;
+                    try {
+                        date1 = new SimpleDateFormat("yyyy-mm-dd").parse(add_date);
+                        date2=new SimpleDateFormat("yyyy-mm-dd").parse(ex_date);
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
 
                     //ArrayList<String> tags = (ArrayList<String>) temp.getList("tags", String.class);
-                    Product pro = new Product(id,sid,name,desc,price,stock_quantity,add_date,ex_date,category);
+                    Product pro = new Product(id,sid,name,desc,price,stock_quantity,date1,date2,category);
                     allproducts.add(pro);
                 }
             }

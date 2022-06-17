@@ -28,10 +28,17 @@ public class ProductViewServlet extends HttpServlet {
         HttpSession session=request.getSession();
         List<Product> products = MongoDBProduct.MongoGetProducts();
         request.setAttribute("productsAll", products);
+        String search = request.getParameter("searchstring");
+        if(search==null){
 
-        List<Product> products_filtered = MongoDBProduct.MongoGetProductsFilter("ss");
+        }
+        else if(!search.equalsIgnoreCase(" ") && !search.equalsIgnoreCase("")){
+            List<Product> products_filtered = MongoDBProduct.MongoGetProductsFilter(search);
+            request.setAttribute("productsAll", products_filtered);
+        }
 
-        if(pageid.equalsIgnoreCase("none")){
+
+        if(pageid.equalsIgnoreCase("none") || pageid.equalsIgnoreCase("exists")){
 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-pages/products.jsp");
             dispatcher.forward(request,response);
@@ -39,11 +46,11 @@ public class ProductViewServlet extends HttpServlet {
         else if (session == null || session.getAttribute("name") == null) {
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         }
-        else if(pageid.equalsIgnoreCase("none-S")){
+        else if(pageid.equalsIgnoreCase("none-S") || pageid.equalsIgnoreCase("exists-S")){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-pages/productsS.jsp");
             dispatcher.forward(request,response);
         }
-        else if(pageid.equalsIgnoreCase("none-U")){
+        else if(pageid.equalsIgnoreCase("none-U") || pageid.equalsIgnoreCase("exists-U")){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-pages/productsU.jsp");
             dispatcher.forward(request,response);
         }
