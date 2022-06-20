@@ -1,10 +1,7 @@
-<%@ page import="Database.Order" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="Database.MongoDBOrder" %>
-<%@ page import="Database.Customer" %>
-<%@ page import="Database.Product" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="Database.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,9 +20,8 @@
             
            
         }
-        .content table button{
-            border-radius: 40px;
-            width: 25px;
+        .addremove button{
+            width: 15px;
         }
         
         table{
@@ -41,14 +37,14 @@
     <title>Document</title>
 </head>
 <body>
-<%@ include file = "../headerLoggedin.jsp" %>
+<%@ include file = "../headerLoggedinSeller.jsp" %>
 
 <%
     boolean flag=true;
     ArrayList<Order> orders = new ArrayList<Order>();
-   Customer cus = (Customer)  session.getAttribute("userObject");
-        orders = MongoDBOrder.MongoGetOrdersCustomer(cus.getId());
-
+   Commercial comm = (Commercial)  session.getAttribute("userObject");
+        orders = MongoDBOrder.MongoGetOrdersSeller(comm.getId());
+        String orderid = request.getParameter("orderid");
 
 %>
     <div class="content">
@@ -56,32 +52,35 @@
             <h3>My Orders: </h3>
             <table>
                 <tr>
-                    <th>Order Id: </th>
-                    <th>Products in: </th>
-                    <th>Order Price: </th>
+                    <th>Item Name: </th>
+                    <th>Item Price: </th>
+                    <th>Item Amount: </th>
+                    <th>Total Price: </th>
+                    <th>Purchase Date: </th>
                     <th>Status: </th>
-                    <th>Details </th>
 
                 </tr>
                 <% for(Order order:orders){
                    ArrayList<Product> pros = order.getProducts();
-                   String items="";
-                   %>
-                <tr>
-                 <td><%=order.getOid()%></td>
-                <%   for(Product pro:pros){
-                    items+= pro.getName() + ", ";
-                }
+                   for(Product pro:pros){
+                       if(!pro.getStatus().equalsIgnoreCase("waiting")){
                 %>
-                    <td><%=items%></td>
-                    <td><%=order.getTotalprice()%>TL</td>
-                    <td><%=order.getStatus()%></td>
-                    <form action="OrderOpsServlet" method="post">
-                        <input type="hidden" name="orderid" value="<%=order.getOid()%>">
-                    <td><button type="submit" name="showorderitems" value="showorderitems"> <i class="fa fa-info"></i></button></td></form>
+                <tr>
+                    <td><%=pro.getName()%></td>
+                    <td><%=pro.getPrice()%>TL</td>
+                    <td><%=pro.getAmount()%></td>
+                    <td><%=Double.parseDouble(pro.getPrice())*Double.parseDouble(pro.getAmount())%>TL</td>
+                    <%
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                        String addDate = dateFormat.format(order.getOrder_date());%>
+                    <td><%=addDate%></td>
+                    <td><%=pro.getStatus()%></td>
+                    
                 </tr>
-                <%items="";}%>
+                <%}}
+                }%>
             </table>
+
         </div>
        
     </div>

@@ -52,6 +52,14 @@ public class SessionMappingServlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/indexLoggedinSeller.jsp");
             dispatcher.forward(request,response);
         }
+        else if(pageid.equalsIgnoreCase("orderAwaiting")){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-seller/orderitemsA.jsp");
+            dispatcher.forward(request,response);
+        }
+        else if(pageid.equalsIgnoreCase("orderPast")){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-seller/orderitemsP.jsp");
+            dispatcher.forward(request,response);
+        }
     }
 
     @Override

@@ -19,7 +19,30 @@ public class Product {
     private String amount;
    // private ArrayList<String> tags;
    // private Byte image;
+private String flaglocation;
 
+    public String getFlaglocation() {
+        return flaglocation;
+    }
+
+    public void setFlaglocation(String flaglocation) {
+        this.flaglocation = flaglocation;
+    }
+
+    public Product(String id, String sid, String name, String desc, String price, String stock_quantity, Date add_date, Date ex_date, String category, String status, String amount, String flaglocation) {
+        this.id = id;
+        this.sid = sid;
+        this.name = name;
+        this.desc = desc;
+        this.price = price;
+        this.stock_quantity = stock_quantity;
+        this.add_date = add_date;
+        this.ex_date = ex_date;
+        this.category = category;
+        this.status = status;
+        this.amount = amount;
+        this.flaglocation = flaglocation;
+    }
 
     public Product(String id, String sid, String name, String desc, String price, String stock_quantity, Date add_date, Date ex_date, String category, String status, String amount) {
         this.id = id;

@@ -32,12 +32,20 @@
 <%@ include file = "../header.jsp" %>
 <% Product p = (Product) request.getAttribute("selectedproduct");%>
     <div class="content">
-        <div><img src="./img/quickbuy.png" alt="">
-        <p><%=p.getName()%></p>
-        <p><%=p.getPrice()%></p>
-        <button value="Add to cart">Add to cart</button>
+        <div class="iteminfo"><img src="./img/quickbuy.png" alt="">
+
 </div>
         <div class="iteminfo"><p> <%=p.getDesc()%></p>
+            <br>
+            <p>Product Name: <%=p.getName()%></p>
+            <br>
+            <p>Category: <%=p.getCategory()%></p>
+            <br>
+            <p>Stock: <%=p.getStock_quantity()%></p>
+            <p>Price: <%=p.getPrice()%>TL</p>
+            <br>
+            <form action="MappingServlet" method="get">
+                <button name="pageid" value="login">Add to cart</button></form>
        
     </div>
         

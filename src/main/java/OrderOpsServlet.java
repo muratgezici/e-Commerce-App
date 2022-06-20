@@ -23,29 +23,43 @@ public class OrderOpsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        HttpSession session = request.getSession();
-      Customer cus = (Customer) session.getAttribute("userObject");
+       if(request.getParameter("showorderitems")!=null && request.getParameter("showorderitems").equalsIgnoreCase("showorderitems")){
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        Date date1 = null;
-        try {
-            date1 = new SimpleDateFormat("yyyy-mm-dd").parse(formatter.format(date));
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-user/orderitem.jsp");
+           dispatcher.forward(request,response);
+       }
+       else if(request.getParameter("showorderitems")!=null && request.getParameter("showorderitems").equalsIgnoreCase("showorderitemsR")){
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-user/orders.jsp");
+            dispatcher.forward(request,response);
         }
+       else{
+           Customer cus = (Customer) session.getAttribute("userObject");
+
+           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+           Date date = new Date();
+           Date date1 = null;
+           try {
+               date1 = new SimpleDateFormat("yyyy-mm-dd").parse(formatter.format(date));
+           } catch (ParseException e) {
+               throw new RuntimeException(e);
+           }
 
 
-        boolean flag=true;
-        ArrayList<Product> products = new ArrayList<Product>();
-        if(session.getAttribute("cart")==null){
-            flag =false;
-        }else{
-            products = (ArrayList<Product>) session.getAttribute("cart");
-        }
-        MongoDBOrder.mongoInsertOrder(cus.getId(),date1,products);
+           boolean flag=true;
+           ArrayList<Product> products = new ArrayList<Product>();
+           if(session.getAttribute("cart")==null){
+               flag =false;
+           }else{
+               products = (ArrayList<Product>) session.getAttribute("cart");
+           }
+           MongoDBOrder.mongoInsertOrder(cus.getId(),date1,products);
 
-        session.setAttribute("cart",null);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-user/orders.jsp");
-        dispatcher.forward(request,response);
+           session.setAttribute("cart",null);
+           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-user/orders.jsp");
+           dispatcher.forward(request,response);
+
+       }
+
     }
 }

@@ -73,10 +73,10 @@
                         <li class="nav-item nav-item-dropdown">
                             <a class="dropdown-trigger" href="#"><button type="submit"><i class="fa fa-cart-shopping fa-xl"></i><p>Orders</p></button></a>
                             <ul class="dropdown-menu">
-                                <a href="./SessionMappingServlet?pageid=cart"><li class="dropdown-menu-item">
+                                <a href="./SessionMappingServlet?pageid=orderAwaiting"><li class="dropdown-menu-item">
                                     Awaiting Orders
                                 </li></a>
-                                <a href="./SessionMappingServlet?pageid=orders"> <li class="dropdown-menu-item">
+                                <a href="./SessionMappingServlet?pageid=orderPast"> <li class="dropdown-menu-item">
                                     Past Orders
                                 </li></a>
                             </ul>

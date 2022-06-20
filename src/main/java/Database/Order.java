@@ -9,6 +9,24 @@ public class Order {
     private Date order_date;
     private String status; //waiting, accepted, partial, denied
     private ArrayList<Product> products;
+private double totalprice;
+
+    public double getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(double totalprice) {
+        this.totalprice = totalprice;
+    }
+
+    public Order(String oid, String cid, Date order_date, String status, ArrayList<Product> products, double totalprice) {
+        this.oid = oid;
+        this.cid = cid;
+        this.order_date = order_date;
+        this.status = status;
+        this.products = products;
+        this.totalprice = totalprice;
+    }
 
     public Order(String oid, String cid, Date order_date, String status, ArrayList<Product> products) {
         this.oid = oid;
