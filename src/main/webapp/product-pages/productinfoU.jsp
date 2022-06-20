@@ -13,7 +13,7 @@
         .content{
             flex-direction: row;
             padding-top: 30px;
-            justify-content: baseline;
+            justify-content: center;
             align-items:flex-start;
         }
         .content .iteminfo{
@@ -44,8 +44,11 @@
         <p>Stock: <%=p.getStock_quantity()%></p>
         <p>Price: <%=p.getPrice()%>TL</p>
         <br>
-        <form action="MappingServlet" method="get">
-            <button name="pageid" value="login">Add to cart</button></form>
+        <form action="CartServlet" method="post">
+            <% session.setAttribute("addCartProduct", p);
+                System.out.println(p.getName());%>
+            <button value="Add to cart">Add to cart</button>
+        </form>
 
     </div>
 

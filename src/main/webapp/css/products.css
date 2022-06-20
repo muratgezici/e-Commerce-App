@@ -12,9 +12,7 @@
 }
 .content .image{
   display: flex;
-
-  text-emphasis: center;
-
+  text-align: center;
   align-items:stretch;
 }
 .content .image img{

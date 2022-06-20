@@ -13,7 +13,7 @@
         .content{
             flex-direction: row;
             padding-top: 30px;
-            justify-content: baseline;
+            justify-content: center;
             align-items:flex-start;
         }
         .content .iteminfo{
