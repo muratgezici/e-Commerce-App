@@ -103,7 +103,7 @@
                     String exDate = dateFormat.format(p.getEx_date());
                 %>
                 <tr>
-                    <td> <img src="./img/quickbuy.png" alt=""> </td>
+                    <td>  <img src="./img/product_<%=p.getId()%>.jpg?time=<%=System.currentTimeMillis()%>" onerror="this.onerror=null;this.src='./img/quickbuy.png?time=<%=System.currentTimeMillis()%>';"  alt=""> </td>
                     <td> <%=p.getName()%> </td>
                     <td> <%=p.getStock_quantity()%> </td>
                     <td> <%=p.getPrice()%> </td>

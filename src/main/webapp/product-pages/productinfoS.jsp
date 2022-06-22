@@ -32,7 +32,7 @@
 <%@ include file = "../headerLoggedinSeller.jsp" %>
 <% Product p = (Product) request.getAttribute("selectedproduct");%>
 <div class="content">
-    <div class="iteminfo"><img src="./img/quickbuy.png" alt="">
+    <div class="iteminfo"> <img src="./img/product_<%=p.getId()%>.jpg?time=<%=System.currentTimeMillis()%>" onerror="this.onerror=null;this.src='./img/quickbuy.png?time=<%=System.currentTimeMillis()%>';"  alt="">
 
     </div>
     <div class="iteminfo"><p> <%=p.getDesc()%></p>

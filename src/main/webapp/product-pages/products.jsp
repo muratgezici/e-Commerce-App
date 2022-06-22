@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/dropdown.css">
     <link rel="stylesheet" href="./css/products.css">
     <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet"  type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -93,12 +94,11 @@
                         <input type="" name="selectedproduct" value="<%=p.getId()%>" hidden>
 
                         <button type="submit">
-                       <img src="./img/quickbuy.png" alt="">
+                       <img src="./img/product_<%=p.getId()%>.jpg?time=<%=System.currentTimeMillis()%>" onerror="this.onerror=null;this.src='./img/quickbuy.png?time=<%=System.currentTimeMillis()%>';"  alt="">
                             <p><%=p.getName()%></p>
                             <p>Price: <%=p.getPrice()%></p>
                         </button>
                     </form>
-
 
                 </td>
                <% rowcounter++; if(rowcounter%4==0){ colcounter++;%></tr><%}%>

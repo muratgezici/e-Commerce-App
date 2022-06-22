@@ -8,6 +8,7 @@ import net.amygdalum.stringsearchalgorithms.search.StringFinder;
 import net.amygdalum.stringsearchalgorithms.search.StringMatch;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -176,7 +177,7 @@ public class MongoDBProduct {
     }
 
 
-        public static void mongoInsert(String sid, String name, String desc, String price, String stock_quantity, String add_date, String ex_date, String category){
+        public static String mongoInsert(String sid, String name, String desc, String price, String stock_quantity, String add_date, String ex_date, String category){
             MongoCollection collection = ConnectionProducts();
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             Document document1 = new Document().
@@ -186,6 +187,9 @@ public class MongoDBProduct {
                     append("add_date", add_date).append("ex_date", ex_date).append("category", category);
 
             collection.insertOne(document1);
+            ObjectId id = document1.getObjectId("_id");
+            String pid = id.toString();
+            return pid;
         }
 
         public static List<Product> mongoViewProductsSeller(String sid){

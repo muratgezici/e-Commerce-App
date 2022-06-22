@@ -93,7 +93,7 @@
                         <input type="" name="selectedproduct" value="<%=p.getId()%>" hidden>
 
                         <button type="submit">
-                            <img src="./img/quickbuy.png" alt="">
+                            <img src="./img/product_<%=p.getId()%>.jpg?time=<%=System.currentTimeMillis()%>" onerror="this.onerror=null;this.src='./img/quickbuy.png?time=<%=System.currentTimeMillis()%>';"  alt="">
                             <p><%=p.getName()%></p>
                             <p>Price: <%=p.getPrice()%></p>
                         </button>

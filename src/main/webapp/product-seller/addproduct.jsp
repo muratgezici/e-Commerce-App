@@ -19,7 +19,7 @@
 <%@ include file = "../headerLoggedinSeller.jsp" %>
     <div class="content">
 
-        <form class="loginform" action="ProductOperationServlet" method="post" width="500px">
+        <form class="loginform" action="FileUploadServlet" method="post" enctype="multipart/form-data" width="500px">
             <h3>Add Product</h3>
             <div>
                 <input type="text" placeholder="product name" name="pname">
@@ -41,7 +41,8 @@
                 <input type="text" placehoder="category" name="category">
 
             </div>
-            <button type="submit" name="action" value="add-save"><p>Add product</p></button>
+            <input type="hidden" name="action" value="add-save">
+            <button type="submit"><p>Add product</p></button>
 
         </form>
     </div>

@@ -22,7 +22,7 @@
 
 %>
     <div class="content">
-<form class="loginform" action="ProductOperationServlet" method="post" width="500px">
+<form class="loginform" action="FileUploadServlet" method="post" enctype="multipart/form-data" width="500px">
     <h3>Update Product</h3>
     <div>
         <input type="text" placeholder="product name" name="pname" value="<%=pro.getName()%>">
@@ -52,7 +52,8 @@
 
     </div>
     <input type="hidden" name="productid" value="<%=pid%>">
-    <button type="submit" name="action" value="edit-save" ><p>Update product</p></button>
+    <input type="hidden" name="action" value="edit-save">
+    <button type="submit" ><p>Update product</p></button>
 
 </form>
     </div>
