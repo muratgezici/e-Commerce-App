@@ -53,19 +53,43 @@ public class FileUploadServlet extends HttpServlet {
             pid = m.getParameter("productid");
             MongoDBProduct.MongoDBUpdateProduct(pid,sid1,name,desc,price,stock_quantity,add_date,ex_date,category);
         }
+        File o = null;
 
-        File o=m.getFile("image");
-        File n=new File("E:\\MuratStajDosyaları\\ecommerceapp\\src\\main\\webapp\\img\\product_"+ pid+".jpg");
-        File nTarget =new File("E:\\MuratStajDosyaları\\ecommerceapp\\target\\ecommerceapp\\img\\product_"+ pid+".jpg");
-        n.delete();
-        o.renameTo(n);
-        System.out.println(m.getOriginalFileName("image")+"this is after originalfilename, new N:"+o.getPath()+" "+n.getPath());
-        try {
-        Files.copy(n.toPath(), nTarget.toPath());
-        } catch (IOException ex) {
-            nTarget.delete();
-            Files.copy(n.toPath(), nTarget.toPath());
+        if(m.getFile("image")==null){
+            o =new File("E:\\MuratStajDosyaları\\ecommerceapp\\src\\main\\webapp\\img\\quickbuy.png");
+            File n=new File("E:\\MuratStajDosyaları\\ecommerceapp\\src\\main\\webapp\\img\\product_"+ pid+".jpg");
+            File nTarget =new File("E:\\MuratStajDosyaları\\ecommerceapp\\target\\ecommerceapp\\img\\product_"+ pid+".jpg");
+
+            try {
+                Files.copy(o.toPath(), n.toPath());
+            } catch (IOException ex) {
+                n.delete();
+                Files.copy(o.toPath(), n.toPath());
+            }
+            try {
+                Files.copy(o.toPath(), nTarget.toPath());
+            } catch (IOException ex) {
+                nTarget.delete();
+                Files.copy(o.toPath(), nTarget.toPath());
+            }
         }
+        else{
+            o=m.getFile("image");
+            File n=new File("E:\\MuratStajDosyaları\\ecommerceapp\\src\\main\\webapp\\img\\product_"+ pid+".jpg");
+            File nTarget =new File("E:\\MuratStajDosyaları\\ecommerceapp\\target\\ecommerceapp\\img\\product_"+ pid+".jpg");
+            n.delete();
+            o.renameTo(n);
+            try {
+                Files.copy(n.toPath(), nTarget.toPath());
+            } catch (IOException ex) {
+                nTarget.delete();
+                Files.copy(n.toPath(), nTarget.toPath());
+            }
+            System.out.println(m.getOriginalFileName("image")+"this is after originalfilename, new N:"+o.getPath()+" "+n.getPath());
+        }
+
+
+
 
       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-seller/myproducts.jsp");
        dispatcher.forward(request,response);

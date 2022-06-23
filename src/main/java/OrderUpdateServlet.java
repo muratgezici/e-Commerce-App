@@ -15,13 +15,13 @@ public class OrderUpdateServlet extends HttpServlet {
         System.out.println(itemid+" "+operation);
         if(operation.equalsIgnoreCase("accepted")){
             MongoDBOrder.MongoDBUpdateOrder(itemid,operation, orderid);
-            MongoDBOrder.MongoDBUpdateOrderStatus();
+            MongoDBOrder.MongoDBUpdateOrderStatus(orderid);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-seller/orderitemsA.jsp");
             dispatcher.forward(request,response);
         }
         else if(operation.equalsIgnoreCase("denied")){
             MongoDBOrder.MongoDBUpdateOrder(itemid,operation, orderid);
-            MongoDBOrder.MongoDBUpdateOrderStatus();
+            MongoDBOrder.MongoDBUpdateOrderStatus("orderid");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product-seller/orderitemsA.jsp");
             dispatcher.forward(request,response);
         }

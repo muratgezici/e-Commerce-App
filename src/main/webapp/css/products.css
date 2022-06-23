@@ -74,6 +74,11 @@
   flex-direction: column;
   padding: 15px;
 }
+.productitem img{
+  width:175px;
+  height: 175px;
+  object-fit: contain;
+}
 .products table tr td td{
   background-color: black;
 }

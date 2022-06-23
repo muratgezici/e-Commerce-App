@@ -79,17 +79,18 @@ public class MongoDBOrder {
             }
             return allOrders;
         }
-    public static ArrayList<Product> MongoGetOrdersProductAll (){
+    public static ArrayList<Product> MongoGetOrdersProductAll (String oid){
         MongoCollection collection = ConnectionOrders();
         FindIterable<Document> fi = collection.find();
         MongoCursor<Document> cursor = fi.iterator();
-        ArrayList<Order> allOrders = new ArrayList<Order>();
         ArrayList<Product> products = new ArrayList<Product>();
         try {
             while (cursor.hasNext()) {
                 Document temp = cursor.next();
 
                 String id = temp.getObjectId("_id").toString();
+             if(oid.equalsIgnoreCase(id)){
+
                 String cid = temp.getString("cid");
                 String status = temp.getString("status");
                 Date add_date = temp.getDate("order_date");
@@ -120,7 +121,7 @@ public class MongoDBOrder {
                     }
 
             }
-
+            }
         }
         finally {
             cursor.close();
@@ -207,15 +208,14 @@ public class MongoDBOrder {
         }
 public static void MongoDBUpdateOrder(String _id, String status,String oid){
     MongoCollection collection = ConnectionOrders();
-    ArrayList<Product> products = MongoGetOrdersProductAll();
-    Document docPro2 = new Document();
-    Document document1 = new Document();
+    ArrayList<Product> products = MongoGetOrdersProductAll(oid);
     FindIterable<Document> fi = collection.find();
     MongoCursor<Document> cursor = fi.iterator();
     try {
         while (cursor.hasNext()) {
             Document temp = cursor.next();
             if(temp.getObjectId("_id").toString().equalsIgnoreCase(oid)) {
+                Document docPro2 = new Document();
                 for (Product pro : products) {
                     if (_id.equals(pro.getId())) {
                         Document docPro = new Document().append("id", pro.getId()).
@@ -253,18 +253,19 @@ public static void MongoDBUpdateOrder(String _id, String status,String oid){
 
 }
 
-    public static void MongoDBUpdateOrderStatus(){
+    public static void MongoDBUpdateOrderStatus(String oid){
         MongoCollection collection = ConnectionOrders();
-        ArrayList<Product> products = MongoGetOrdersProductAll();
-        Document docPro2 = new Document();
-        Document document1 = new Document();
+        ArrayList<Product> products = MongoGetOrdersProductAll(oid);
         FindIterable<Document> fi = collection.find();
         MongoCursor<Document> cursor = fi.iterator();
         try {
             while (cursor.hasNext()) {
                 Document temp = cursor.next();
                 boolean wait=false,accept=false,deny=false;
-                for(Product pro:products) {
+                if(temp.getObjectId("_id").toString().equalsIgnoreCase(oid)){
+
+
+                    for(Product pro:products) {
                     if( pro.getStatus().equalsIgnoreCase("waiting")){
                         wait=true;
                         System.out.println("waitttt");
@@ -302,7 +303,7 @@ public static void MongoDBUpdateOrder(String _id, String status,String oid){
                     collection.updateOne(temp,updateOp1);
                 }
             }
-
+            }
         } finally {
             cursor.close();
         }
