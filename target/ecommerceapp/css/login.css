@@ -1,0 +1,54 @@
+.content{
+    display:flex;
+    flex-direction: row;
+    border-radius: 30px;
+    align-items: baseline;
+    margin-top:20px;
+    width:fit-content;
+    height:max-content;
+}
+.content .loginform{
+    display:flex;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.content .loginform input{
+
+    width: 250px;
+    height: 25px;
+    margin:15px;
+
+}
+.content .loginform .checkbox{
+    display: flex;
+    width:100%;
+    justify-content: stretch;
+    font-size: 12px;
+    margin:0px;
+    text-align:start;
+    align-items: center;
+
+}
+
+.content .loginform .checkbox input{
+    width: 12px;
+    height: 12px;
+    margin:5px;
+    margin-right: 10px;
+    margin-left: 15px;
+}
+.content .loginform div input{
+    width: 105px;
+}
+.content button{
+    width:115px;
+    margin:10px;
+
+}
+.content h3{
+    color: #7ba6a2;
+}
