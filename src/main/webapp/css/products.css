@@ -130,4 +130,11 @@
     
   }
    .touch {position: absolute; opacity: 0; height: 0px;}    
-   .touch:checked + .slide {height: 120px;} 
+   .touch:checked + .slide {height: 120px;}
+
+   .categorybutton{
+     background-color: rgb(1,1,1,0);
+     height: fit-content;
+     font-size: 11px;
+     width: fit-content;
+   }

@@ -1,5 +1,9 @@
 <%@ page import="Database.Product" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="Database.Category" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="Database.MongoDBProduct" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,64 +19,71 @@
 </head>
 <body>
 <%@ include file = "../header.jsp" %>
+<%
+    ArrayList<Product> pro = (ArrayList<Product>)request.getAttribute("productsAll");
+    ArrayList<Product> pro1 =(ArrayList<Product>) MongoDBProduct.MongoGetProducts();
+%>
     <div class="content">
         <div class="leftmenu">
             <h5>Categories</h5>
+            <%
+                ArrayList<Category> cats = new ArrayList<Category>();
+
+                for(Product p:pro1) {
+                    ArrayList<String> tags = new ArrayList<String>();
+                    String[] info = p.getCategory().split(" ");
+
+                    for (int i = 1; i < info.length; i++) {
+                        if (!tags.contains(info[i])) {
+                            tags.add(info[i]);
+                        }
+                    }
+                    Category cat = new Category(info[0], tags);
+                    cats.add(cat);
+                }
+                ArrayList<Category> cats_unique = new ArrayList<Category>();
+                ArrayList<String> tagsUnique = new ArrayList<>();
+                for(Category cat:cats) {
+                    boolean found =false;
+
+                 for(Category innercat:cats_unique) {
+                     if(cat.getName().equalsIgnoreCase(innercat.getName())) {
+                         found=true;
+                      ArrayList<String> tagsInner = cat.getTags();
+                      tagsUnique = innercat.getTags();
+                      for(String tinner:tagsInner){
+                          if(!tagsUnique.contains(tinner)){
+                              tagsUnique.add(tinner);
+                              System.out.println("tags uniq: "+tagsUnique);
+                          }
+                      }
+                         System.out.println("this is my cat object before set tags"+cat.toString());
+                    cat.setTags(tagsUnique);
+                         System.out.println("this is my cat object"+cat.toString());
+                     }
+                 }
+                 if(!found) {
+                     cats_unique.add(cat);
+                 }
+
+                } %>
+
+             <%   for(Category printcat:cats_unique) { %>
             <ul>
                 <li>
-                    <label for="touch"><span>Spaceships</span></label>               
-                    <input type="checkbox" id="touch" class="touch"> 
+                    <label for="touch<%=printcat.getName()%>"><span><%=printcat.getName()%></span></label>
+                    <input type="checkbox" id="touch<%=printcat.getName()%>" class="touch">
                     <ul class="slide">
-                      <li><a href="#">Lorem1 </a></li> 
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
+                 <%   for (String printtag : printcat.getTags()) { %>
+                     <form action="ProductViewServlet" method="post">
+                         <input type="hidden" name="productfilter" value="exists">
+                         <input type="hidden" name="searchstring" value="<%=printtag%>">
+                         <li> <button class="categorybutton" type="submit"><%=printtag%></button></li>
+                     </form>
+                        <%   }%>
                     </ul></li>
-                    <li>
-                        <label for="touch1"><span>Cars</span></label>               
-                        <input type="checkbox" id="touch1" class="touch"> 
-                        <ul class="slide">
-                          <li><a href="#">Lorem2 </a></li> 
-                          <li><a href="#">Lorem </a></li>
-                          <li><a href="#">Lorem </a></li>
-                          <li><a href="#">Lorem </a></li>
-                        </ul></li>
-                    <li>
-                    <label for="touch2"><span>Ships</span></label>               
-                    <input type="checkbox" id="touch2" class="touch"> 
-                    <ul class="slide">
-                      <li><a href="#">Lorem3</a></li> 
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                    </ul></li>
-                    <li>
-                    <label for="touch3"><span>Planes</span></label>               
-                    <input type="checkbox" id="touch3" class="touch"> 
-                    <ul class="slide">
-                      <li><a href="#">Lorem 4</a></li> 
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                    </ul></li>
-                    <li>
-                    <label for="touch4"><span>Grocery</span></label>               
-                    <input type="checkbox" id="touch4" class="touch"> 
-                    <ul class="slide">
-                      <li><a href="#">Lorem5</a></li> 
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                    </ul></li>
-                    <li>
-                    <label for="touch5"><span>Armory</span></label>               
-                    <input type="checkbox" id="touch5" class="touch"> 
-                    <ul class="slide">
-                      <li><a href="#">Lorem 6</a></li> 
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                      <li><a href="#">Lorem </a></li>
-                    </ul></li>
+                <%}
+            %>
             </ul>
         </div>
 
@@ -84,7 +95,6 @@
                 %>
                 <th colspan="3"> <%=s%></th>
                 <%
-                    ArrayList<Product> pro = (ArrayList<Product>)request.getAttribute("productsAll");
                     int colcounter =0;
                     int rowcounter=0;
                     for(Product p:pro){
